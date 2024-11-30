@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import useRaffle from '@/composables/useRaffle'
 import { confetti } from '@tsparticles/confetti'
-import { ref, watch } from 'vue'
+import { watch } from 'vue'
 
-const { winners, counter } = useRaffle()
+const { winners, counter, congratulatios, congratulatiosFunction } = useRaffle()
 
 const fireConfetti = async (x: number) => {
   await confetti('', {
@@ -19,18 +19,16 @@ const fireConfetti = async (x: number) => {
   })
 }
 
-const showCongratulations = ref<boolean>(false)
-
 watch(counter, async (payload) => {
   if (payload) {
     document.getElementById('congratulations-card')?.classList.remove('animate__fadeOutDown')
     document.getElementById('congratulations-card')?.classList.add('animate__fadeInDown')
     await fireConfetti(50)
-    showCongratulations.value = true
+    congratulatiosFunction(true)
     setTimeout(() => {
       document.getElementById('congratulations-card')?.classList.add('animate__fadeOutDown')
       document.getElementById('congratulations-card')?.classList.remove('animate__fadeInDown')
-      showCongratulations.value = false
+      congratulatiosFunction(false)
     }, 3000)
   }
 })
@@ -40,7 +38,7 @@ watch(counter, async (payload) => {
   <div
     id="congratulations-card"
     class="congratulations-card animate__animated"
-    v-if="showCongratulations"
+    v-if="congratulatios"
   >
     <img
       class="employee-image"
@@ -48,10 +46,10 @@ watch(counter, async (payload) => {
       alt="employee"
     />
     <h1 class="text-[7rem] text-white text-center">Falicidades al ganador</h1>
-    <h1 class="text-[6rem] text-white text-center lowercase">
+    <h1 class="text-[6rem] text-white text-center">
       {{ winners[winners.length - 1].name }}
     </h1>
-    <h1 class="text-[5rem] text-white text-center lowercase">
+    <h1 class="text-[5rem] text-white text-center">
       {{ winners[winners.length - 1].department }}
     </h1>
   </div>

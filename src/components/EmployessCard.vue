@@ -10,7 +10,7 @@ defineProps<EmployeeProps>()
 
 <template>
   <div class="employee-card p-3" :id="`_${employee.idr}`">
-    <img src="../../public/frame.png" alt="frame" class="rounded-md w-[95%]" />
+    <img src="../../public/frame_2.png" alt="frame" class="rounded-md w-[95%]" />
     <div class="marco-contain">
       <img
         class="employee-image"

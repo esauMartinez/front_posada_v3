@@ -13,7 +13,7 @@ import { ref } from 'vue'
 const useRaffle = () => {
   const raffleStore = useRaffleStore()
 
-  const { employees, winners, counter, raffle } = storeToRefs(raffleStore)
+  const { employees, winners, counter, raffle, congratulatios } = storeToRefs(raffleStore)
   const winners_search = ref<Employee[]>([])
   const name = ref('')
 
@@ -34,8 +34,30 @@ const useRaffle = () => {
 
   // change status raffle
   const changeStatusRaffleFunction = async (): Promise<void> => {
-    const data = await changeStatusRaffle()
-    raffleStore.setRaffle(data)
+    let texto = 'null'
+    if (raffle.value.status === 'STOP') {
+      texto = 'La rifa se iniciara'
+    } else if (raffle.value.status === 'PLAYING') {
+      texto = 'La rifa se pausara'
+    } else if (raffle.value.status === 'PAUSED') {
+      texto = 'La rifa se reanudara'
+    }
+
+    Swal.fire({
+      title: 'Estas seguro/a?',
+      text: texto,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const data = await changeStatusRaffle()
+        raffleStore.setRaffle(data)
+      }
+    })
   }
 
   // get data raffle
@@ -46,14 +68,27 @@ const useRaffle = () => {
 
   // reset raffle
   const resetWinnersFunction = async (): Promise<void> => {
-    const { data } = await resetWinners()
-    await getRaffleFunction()
     Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: data,
-      showConfirmButton: false,
-      timer: 1500,
+      title: 'Estas seguro/a?',
+      text: 'La rifa se reiniciara',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const { data } = await resetWinners()
+        await getRaffleFunction()
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: data,
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      }
     })
   }
 
@@ -104,6 +139,10 @@ const useRaffle = () => {
     }
   }
 
+  const congratulatiosFunction = (payload: boolean) => {
+    raffleStore.setCongratulations(payload)
+  }
+
   return {
     employees,
     winners,
@@ -111,6 +150,7 @@ const useRaffle = () => {
     raffle,
     winners_search,
     name,
+    congratulatios,
     getEmployessFunction,
     getWinnersFunction,
     changeStatusRaffleFunction,
@@ -119,6 +159,7 @@ const useRaffle = () => {
     deliverGiftFunction,
     searchEmployees,
     setWinnerSearch,
+    congratulatiosFunction,
   }
 }
 

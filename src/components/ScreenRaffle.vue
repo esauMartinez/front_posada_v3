@@ -27,6 +27,12 @@ const toogleClass = () => {
   }, 3000)
 }
 
+const closeScreenRaffle = () => {
+  document.getElementById('screen_raffle')?.classList.add('animate__fadeOutUp')
+  document.getElementById('screen_raffle')?.classList.remove('animate__fadeInDown')
+  // showBtnClose.value = false
+}
+
 setInterval(() => {
   toogleClass()
 }, 10000)
@@ -37,16 +43,22 @@ setInterval(() => {
     id="screen_raffle"
     class="h-svh fixed top-0 bottom-0 left-0 right-0 z-10 flex items-center flex-col justify-center animate__animated"
   >
+    <div class="fixed top-0 right-0 z-[1010] p-2">
+      <button class="rounded-full" @click="closeScreenRaffle">
+        <i class="lni lni-xmark text-4xl text-white"></i>
+      </button>
+    </div>
+
     <img
-      src="../../public/logo_tsm.png"
+      src="../../public/1.5.png"
       alt="logo_tsm"
       :class="['logo_tsm', 'animate__animated', 'animate__slow']"
     />
 
-    <h1 class="text-[6rem] text-white text-center" v-if="raffle.status === 'FINISHED'">
+    <h1 class="text-[8rem] text-white text-center" v-if="raffle.status === 'FINISHED'">
       Rifa Finalizada
     </h1>
-    <h1 class="text-[6rem] text-white text-center" v-if="raffle.status === 'FINISHED'">
+    <h1 class="text-[8rem] text-white text-center" v-if="raffle.status === 'FINISHED'">
       Felicidades a Todos los Ganadores !!
     </h1>
   </div>
@@ -66,6 +78,24 @@ setInterval(() => {
 }
 
 .logo_tsm {
-  width: 90%;
+  width: 80%;
+}
+
+@media screen and (max-width: 992px) {
+  .logo_tsm {
+    width: 100%;
+  }
+
+  #screen_raffle {
+    height: 100vh;
+    z-index: 1003;
+  }
+
+  #screen_raffle h1 {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem !important;
+  }
 }
 </style>

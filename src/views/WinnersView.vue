@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ButtonEnd from '@/components/ButtonEnd.vue'
 import CongratulationsCard from '@/components/CongratulationsCard.vue'
+import ScreenRaffle from '@/components/ScreenRaffle.vue'
 import WinnerCard from '@/components/WinnerCard.vue'
 import useRaffle from '@/composables/useRaffle'
 import { confetti } from '@tsparticles/confetti'
@@ -24,7 +25,8 @@ const down = () => {
 <template>
   <div class="h-svh winners">
     <CongratulationsCard />
-    <div v-for="(winner, index) in winners" :key="index" class="p-2">
+    <ScreenRaffle />
+    <div v-for="(winner, index) in winners" :key="index">
       <WinnerCard :winner="winner" />
     </div>
     <ButtonEnd @click="down" />

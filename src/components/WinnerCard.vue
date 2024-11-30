@@ -22,6 +22,7 @@ defineProps<Props>()
       <span class="text-black text-card text-[1.2rem] font-[400] w-[90%] mb-2">{{
         winner.name
       }}</span>
+
       <span class="text-black text-card font-[400] mb-2">{{ winner.department }}</span>
       <span class="text-black text-card font-[400]">Regalo {{ winner.gift?.number_gift }}</span>
     </div>
