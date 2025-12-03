@@ -123,22 +123,6 @@ const useRaffle = () => {
     winners_search.value = winners
   }
 
-  const searchEmployees = async (name: string): Promise<void> => {
-    const winners_copy: Employee[] = []
-    if (name !== '') {
-      winners.value.forEach((x): void => {
-        if (x.name.toLowerCase().indexOf(name.toLowerCase()) > -1) {
-          winners_copy.push(x)
-        }
-      })
-
-      winners_search.value = winners_copy
-    } else {
-      console.log(winners.value.length)
-      winners_search.value = winners.value
-    }
-  }
-
   const congratulatiosFunction = (payload: boolean) => {
     raffleStore.setCongratulations(payload)
   }
@@ -157,7 +141,6 @@ const useRaffle = () => {
     resetWinnersFunction,
     getRaffleFunction,
     deliverGiftFunction,
-    searchEmployees,
     setWinnerSearch,
     congratulatiosFunction,
   }

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import TableGiftDelivery from '@/components/TableGiftDelivery.vue'
+import ListEmployees from '@/components/ListEmployees.vue'
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-3 p-5">
     <V-Card>
       <template #content>
-        <TableGiftDelivery />
+        <ListEmployees />
       </template>
     </V-Card>
   </div>

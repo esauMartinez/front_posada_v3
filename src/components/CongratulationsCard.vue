@@ -29,7 +29,7 @@ watch(counter, async (payload) => {
       document.getElementById('congratulations-card')?.classList.add('animate__fadeOutDown')
       document.getElementById('congratulations-card')?.classList.remove('animate__fadeInDown')
       congratulatiosFunction(false)
-    }, 3000)
+    }, 5000)
   }
 })
 </script>
@@ -45,7 +45,7 @@ watch(counter, async (payload) => {
       :src="`https://www.tsmconnect.com/empleados_tsmconnect/${winners[winners.length - 1].idr}.jpg`"
       alt="employee"
     />
-    <h1 class="text-[7rem] text-white text-center">Falicidades al ganador</h1>
+    <h1 class="text-[7rem] text-white text-center">Felicidades al ganador</h1>
     <h1 class="text-[6rem] text-white text-center">
       {{ winners[winners.length - 1].name }}
     </h1>

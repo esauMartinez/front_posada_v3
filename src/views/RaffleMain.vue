@@ -3,11 +3,15 @@ import CongratulationsCard from '@/components/CongratulationsCard.vue'
 import EmployessCard from '@/components/EmployessCard.vue'
 import ScreenRaffle from '@/components/ScreenRaffle.vue'
 import WinnerCard from '@/components/WinnerCard.vue'
+import { useEmployees } from '@/composables/useEmployees'
 import useRaffle from '@/composables/useRaffle'
 import { watch } from 'vue'
 
-const { raffle, employees, winners, counter, getEmployessFunction, getWinnersFunction } =
-  useRaffle()
+const { raffle, winners, counter, getEmployessFunction, getWinnersFunction } = useRaffle()
+
+const { employees, getEmployeesFunction } = useEmployees()
+
+getEmployeesFunction()
 
 getEmployessFunction()
 
