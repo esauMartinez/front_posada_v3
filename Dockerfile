@@ -11,7 +11,7 @@ RUN npm install
 COPY . .
 
 # Compilar el proyecto (carpeta dist)
-RUN npm run build
+RUN npm run build-only
 
 # Etapa 2: Servir con Nginx
 FROM nginx:stable-alpine
