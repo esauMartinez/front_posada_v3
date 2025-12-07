@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { QrcodeStream } from 'qrcode-reader-vue3'
+import { useUpdate } from '@/composables/useUpdate'
 
 const result = ref('')
 const loading = ref(true)
 const cameraAllowed = ref(true)
 
+const { updateEmployeeFunctionId } = useUpdate()
+
 const onDecode = (decodedString) => {
+  updateEmployeeFunctionId(+result.value)
   result.value = decodedString
   // Opcional: vibrar el celular al escanear
   if (navigator.vibrate) {
