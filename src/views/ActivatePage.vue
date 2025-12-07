@@ -61,7 +61,7 @@ const paintBoundingBox = (detectedCodes, ctx) => {
 
     <div v-if="result" class="result">
       <h3>✅ Código escaneado:</h3>
-      <p>{{ result }}</p>
+      <p>Empleado escaneado: {{ result }}</p>
       <button @click="result = ''">Escanear otro</button>
     </div>
   </div>
