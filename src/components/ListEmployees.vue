@@ -56,22 +56,10 @@ onMounted(() => {
         />
       </div>
     </template>
-    <V-Column header="Idr" field="idr" sortable></V-Column>
-    <V-Column header="Fotografía" :style="{ width: '100px' }">
-      <template #body="{ data }: { data: Employee }">
-        <div class="flex justify-center">
-          <img
-            :src="`https://www.tsmconnect.com/empleados_tsmconnect/${data.idr}.jpg`"
-            width="50px"
-            height="50px"
-            alt="employee"
-            class="h-[50px]! rounded-full"
-          />
-        </div>
-      </template>
-    </V-Column>
+    <V-Column header="ID" field="id" sortable></V-Column>
     <V-Column header="Empleado" field="name" sortable></V-Column>
-    <V-Column field="department" header="Departamento" :style="{ width: '200px' }" sortable />
+    <V-Column field="proyecto" header="Proyecto" :style="{ width: '200px' }" sortable />
+    <V-Column field="localidad" header="Localidad" :style="{ width: '200px' }" sortable />
     <V-Column field="isAvailable" header="Estatus" :style="{ width: '200px' }" sortable>
       <template #body="{ data }: { data: Employee }">
         <V-Tag
@@ -79,6 +67,13 @@ onMounted(() => {
           :severity="data.isAvailable ? 'success' : 'danger'"
           class="w-full"
         />
+      </template>
+    </V-Column>
+    <V-Column header="Qr" :style="{ width: '50px' }">
+      <template #body="{ data }: { data: Employee }">
+        <div class="flex justify-center items-center">
+          <iframe :src="data.qrCode" frameborder="0"></iframe>
+        </div>
       </template>
     </V-Column>
     <V-Column header="Acciones" :style="{ width: '200px' }">

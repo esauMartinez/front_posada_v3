@@ -7,6 +7,7 @@ export interface Employee {
   isAvailable?: boolean
   isDelivered?: boolean
   gift?: Gift
+  qrCode?: string
 }
 
 export interface Gift {
