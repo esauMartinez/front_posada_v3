@@ -17,6 +17,8 @@ watch(winners, (payload) => {
 const filters = ref({
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+  department: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+  gift_id: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
 })
 </script>
 
@@ -28,7 +30,7 @@ const filters = ref({
     paginator
     :rows="10"
     :rowsPerPageOptions="[10, 20, 50]"
-    :globalFilterFields="['name']"
+    :globalFilterFields="['name', 'department', 'gift_id']"
   >
     <template #header>
       <V-IconField>
@@ -39,6 +41,7 @@ const filters = ref({
       </V-IconField>
     </template>
     <V-Column header="Empleado" field="name"></V-Column>
+    <V-Column field="department" header="Departamento" :style="{ width: '200px' }" sortable />
     <V-Column header="Numero de regalo" :style="{ width: '200px' }">
       <template #body="{ data }">
         <V-Tag :value="data.gift_id" severity="info" class="w-full" />

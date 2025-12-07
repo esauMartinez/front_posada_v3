@@ -261,7 +261,7 @@ items.forEach((item) => {
 }
 
 .raffle-main {
-  background: radial-gradient(ellipse at bottom, #141a22 0%, #686868 100%);
+  background: radial-gradient(ellipse at bottom, #ffffff 100%, #ffffff 100%);
   overflow: hidden;
   filter: drop-shadow(0 0 3px white);
 }

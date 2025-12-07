@@ -12,19 +12,19 @@ defineProps<Props>()
   <div
     class="marco text-center flex flex-col items-center justify-center animate__animated animate__backInLeft"
   >
-    <img src="../../public/frame_2.png" alt="frame" class="rounded-md frame-winner" />
+    <img src="../../public/frame.png" alt="frame" class="rounded-md frame-winner" />
     <div class="marco-contain">
       <img
         class="employee-image mb-4"
         :src="`https://www.tsmconnect.com/empleados_tsmconnect/${winner.idr}.jpg`"
         alt="employee"
       />
-      <span class="text-black text-card text-[1.2rem] font-[400] w-[90%] mb-2">{{
-        winner.name
-      }}</span>
+      <span class="text-white text-card text-[1.2rem] font-[400] w-[90%] mb-2">
+        {{ winner.name }}
+      </span>
 
-      <span class="text-black text-card font-[400] mb-2">{{ winner.department }}</span>
-      <span class="text-black text-card font-[400]">Regalo {{ winner.gift?.number_gift }}</span>
+      <span class="text-white text-card font-[100] mb-2">{{ winner.department }}</span>
+      <span class="text-white text-card font-[400]">Regalo {{ winner.gift?.number_gift }}</span>
     </div>
   </div>
 </template>

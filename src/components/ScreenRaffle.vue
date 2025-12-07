@@ -49,11 +49,14 @@ setInterval(() => {
       </button>
     </div>
 
-    <img
-      src="../../public/1.5.png"
-      alt="logo_tsm"
-      :class="['logo_tsm', 'animate__animated', 'animate__slow']"
-    />
+    <div class="flex justify-center">
+      <img
+        src="../../public/logo.png"
+        alt="logo_tsm"
+        :class="['logo_tsm', 'animate__animated', 'animate__slow', 'w-full']"
+        height="100px"
+      />
+    </div>
 
     <h1 class="text-[8rem] text-white text-center" v-if="raffle.status === 'FINISHED'">
       Rifa Finalizada
@@ -66,7 +69,7 @@ setInterval(() => {
 
 <style scoped>
 #screen_raffle {
-  background: radial-gradient(ellipse at bottom, #141a22 0%, #686868 100%);
+  background: radial-gradient(ellipse at bottom, #142722 100%, #686868 100%);
   overflow: hidden;
   filter: drop-shadow(0 0 3px white);
 }

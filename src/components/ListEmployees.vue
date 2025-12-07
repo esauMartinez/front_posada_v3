@@ -16,6 +16,8 @@ const { disable } = useDisable()
 const filters = ref({
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+  idr: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+  department: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
 })
 
 onMounted(() => {
@@ -31,7 +33,7 @@ onMounted(() => {
     paginator
     :rows="10"
     :rowsPerPageOptions="[10, 20, 50, 100]"
-    :globalFilterFields="['name']"
+    :globalFilterFields="['name', 'idr', 'department']"
   >
     <template #header>
       <div class="grid grid-cols-3 gap-2">
@@ -54,6 +56,7 @@ onMounted(() => {
         />
       </div>
     </template>
+    <V-Column header="Idr" field="idr" sortable></V-Column>
     <V-Column header="Fotografía" :style="{ width: '100px' }">
       <template #body="{ data }: { data: Employee }">
         <div class="flex justify-center">
@@ -68,6 +71,7 @@ onMounted(() => {
       </template>
     </V-Column>
     <V-Column header="Empleado" field="name" sortable></V-Column>
+    <V-Column field="department" header="Departamento" :style="{ width: '200px' }" sortable />
     <V-Column field="isAvailable" header="Estatus" :style="{ width: '200px' }" sortable>
       <template #body="{ data }: { data: Employee }">
         <V-Tag
