@@ -6,8 +6,10 @@ import { urlsocket } from '@/api'
 import type { Raffle } from '@/interfaces/raffle'
 import { useEmployees } from '@/composables/useEmployees'
 import Swal from 'sweetalert2'
+import useRaffle from '@/composables/useRaffle'
 
 export const useSocketState = defineStore('socket', () => {
+  const { congratulatiosFunction } = useRaffle()
   const socket = io(`${urlsocket}/raffle`, { transports: ['websocket'] })
 
   const raffleStore = useRaffleStore()
@@ -19,8 +21,10 @@ export const useSocketState = defineStore('socket', () => {
     })
   }
 
-  socket.on('new winner', (winner: Employee) => {
+  socket.on('new winner', async (winner: Employee) => {
     console.log('a new winner selected')
+    document.getElementById('scroll-content')?.classList.remove('scroll-content')
+    congratulatiosFunction(true)
     raffleStore.setWinner(winner)
   })
 
@@ -38,6 +42,14 @@ export const useSocketState = defineStore('socket', () => {
   socket.on('raffleFinished', (payload: Raffle) => {
     console.log('raffle finished')
     raffleStore.setRaffle(payload)
+  })
+
+  socket.on('iniciar scroll', () => {
+    console.log('iniciar scroll')
+    document.getElementById('scroll-content')?.classList.add('scroll-content')
+    document.getElementById('screen_raffle')?.classList.add('animate__fadeOutUp')
+    document.getElementById('screen_raffle')?.classList.remove('animate__fadeInDown')
+    congratulatiosFunction(false)
   })
 
   socket.on('employee enabled', () => {

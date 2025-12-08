@@ -3,7 +3,7 @@ import useRaffle from '@/composables/useRaffle'
 import { confetti } from '@tsparticles/confetti'
 import { watch } from 'vue'
 
-const { winners, counter, congratulatios, congratulatiosFunction } = useRaffle()
+const { winners, congratulatios } = useRaffle()
 
 const fireConfetti = async (x: number) => {
   await confetti('', {
@@ -19,17 +19,9 @@ const fireConfetti = async (x: number) => {
   })
 }
 
-watch(counter, async (payload) => {
+watch(congratulatios, async (payload) => {
   if (payload) {
-    document.getElementById('congratulations-card')?.classList.remove('animate__fadeOutDown')
-    document.getElementById('congratulations-card')?.classList.add('animate__fadeInDown')
     await fireConfetti(50)
-    congratulatiosFunction(true)
-    setTimeout(() => {
-      document.getElementById('congratulations-card')?.classList.add('animate__fadeOutDown')
-      document.getElementById('congratulations-card')?.classList.remove('animate__fadeInDown')
-      congratulatiosFunction(false)
-    }, 5000)
   }
 })
 </script>
@@ -37,21 +29,26 @@ watch(counter, async (payload) => {
 <template>
   <div
     id="congratulations-card"
-    class="congratulations-card animate__animated"
-    v-if="congratulatios"
+    :class="{
+      'congratulations-card': true,
+      animate__animated: true,
+      animate__fadeInDown: congratulatios,
+      animate__fadeOutDown: !congratulatios,
+    }"
+    v-if="winners.length > 0"
   >
-    <img
-      class="employee-image"
-      :src="`https://www.tsmconnect.com/empleados_tsmconnect/${winners[winners.length - 1].idr}.jpg`"
-      alt="employee"
-    />
-    <h1 class="text-[7rem] text-white text-center">¡¡Felicidades al ganador!!</h1>
-    <h2 class="text-[6rem] text-white text-center">
+    <!-- v-if="congratulatios" -->
+    <img class="employee-image" :src="`santa.jpg`" alt="employee" />
+    <h1 class="text-[6rem] text-white text-center">¡¡Felicidades al ganador!!</h1>
+    <h2 class="text-[5rem] text-white text-center">
       {{ winners[winners.length - 1].name }}
     </h2>
-    <h2 class="text-[5rem] text-white text-center">
-      {{ winners[winners.length - 1].department }}
+    <h2 class="text-[4rem] text-white text-center">
+      {{ winners[winners.length - 1].proyecto }}
     </h2>
+    <h3 class="text-[3rem] text-white text-center">
+      {{ winners[winners.length - 1].gift?.description }}
+    </h3>
   </div>
 </template>
 
