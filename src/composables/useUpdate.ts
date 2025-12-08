@@ -2,8 +2,10 @@ import { updateEmployee, updateEmployeeId } from '@/helpers/update-empleado'
 import type { Employee } from '@/interfaces/employe'
 import Swal from 'sweetalert2'
 import { useEmployees } from './useEmployees'
+import { ref } from 'vue'
 
 export const useUpdate = () => {
+  const result = ref('')
   const { getEmployeesFunction } = useEmployees()
 
   const updateEmployeeFunction = async (payload: Employee) => {
@@ -20,14 +22,8 @@ export const useUpdate = () => {
 
   const updateEmployeeFunctionId = async (payload: number) => {
     const data = await updateEmployeeId(payload)
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: data.data,
-      showConfirmButton: false,
-      timer: 1500,
-    })
-    getEmployeesFunction()
+    alert(data)
+    result.value = ''
   }
 
   const update = (payload: Employee) => {
@@ -59,6 +55,7 @@ export const useUpdate = () => {
   }
 
   return {
+    result,
     update,
     updateEmployeeFunctionId,
   }
