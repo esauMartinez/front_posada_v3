@@ -8,7 +8,6 @@ import { useEmployees } from '@/composables/useEmployees'
 import Swal from 'sweetalert2'
 
 export const useSocketState = defineStore('socket', () => {
-  console.log(urlsocket)
   const socket = io(`${urlsocket}/raffle`, { transports: ['websocket'] })
 
   const raffleStore = useRaffleStore()

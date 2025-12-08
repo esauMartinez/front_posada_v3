@@ -8,6 +8,7 @@ export interface Employee {
   isDelivered?: boolean
   gift?: Gift
   qrCode?: string
+  emailSended?: boolean
 }
 
 export interface Gift {
