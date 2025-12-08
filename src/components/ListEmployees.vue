@@ -40,7 +40,7 @@ onMounted(() => {
         <V-IconField>
           <V-InputText fluid v-model="filters['global'].value" placeholder="Buscar" size="small" />
         </V-IconField>
-        <V-Button
+        <!-- <V-Button
           size="small"
           severity="danger"
           icon="pi pi-check"
@@ -53,7 +53,7 @@ onMounted(() => {
           icon="pi pi-power-off"
           label="Habilitar"
           @click="enable"
-        />
+        /> -->
       </div>
     </template>
     <V-Column header="Idr" field="idr" sortable></V-Column>
@@ -72,7 +72,7 @@ onMounted(() => {
     </V-Column>
     <V-Column header="Empleado" field="name" sortable></V-Column>
     <V-Column field="department" header="Departamento" :style="{ width: '200px' }" sortable />
-    <V-Column field="isAvailable" header="Estatus" :style="{ width: '200px' }" sortable>
+    <!-- <V-Column field="isAvailable" header="Estatus" :style="{ width: '200px' }" sortable>
       <template #body="{ data }: { data: Employee }">
         <V-Tag
           :value="data.isAvailable ? 'Habilitado' : 'No habilitado'"
@@ -91,7 +91,7 @@ onMounted(() => {
           />
         </div>
       </template>
-    </V-Column>
+    </V-Column> -->
 
     <template #footer> Ganadores: {{ employees.length }} </template>
   </V-DataTable>
