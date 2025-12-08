@@ -51,178 +51,7 @@ items.forEach((item) => {
 
 <template>
   <div class="raffle-main">
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
-    <div class="snow"></div>
+    <div class="snow" v-for="index of 189" :key="index"></div>
     <CongratulationsCard />
     <ScreenRaffle />
     <div class="grid grid-cols-12">
@@ -245,10 +74,10 @@ items.forEach((item) => {
 </template>
 
 <style lang="scss" scoped>
-@use 'sass:math';
+// @use 'sass:math';
 
 .scroll-content {
-  animation: scroll 120s linear infinite;
+  animation: scroll 50s linear infinite;
 }
 
 @keyframes scroll {
@@ -266,47 +95,47 @@ items.forEach((item) => {
   filter: drop-shadow(0 0 3px white);
 }
 
-@function random_range($min, $max) {
-  $rand: math.random();
-  $random_range: $min + math.floor($rand * (($max - $min) + 1));
-  @return $random_range;
-}
+// @function random_range($min, $max) {
+//   $rand: math.random();
+//   $random_range: $min + math.floor($rand * (($max - $min) + 1));
+//   @return $random_range;
+// }
 
-.snow {
-  $total: 200;
-  position: absolute;
-  width: 13px;
-  height: 13px;
-  background: white;
-  border-radius: 50%;
-  z-index: 1001;
+// .snow {
+//   $total: 200;
+//   position: absolute;
+//   width: 13px;
+//   height: 13px;
+//   background: white;
+//   border-radius: 50%;
+//   z-index: 1001;
 
-  @for $i from 1 through $total {
-    $random-x: math.random(1000000) * 0.0001vw;
-    $random-offset: random_range(-100000, 100000) * 0.0001vw;
-    $random-x-end: $random-x + $random-offset;
-    $random-x-end-yoyo: $random-x + calc($random-offset / 2);
-    $random-yoyo-time: calc(random_range(30000, 80000) / 100000);
-    $random-yoyo-y: $random-yoyo-time * 100vh;
-    $random-scale: math.random(10000) * 0.0001;
-    $fall-duration: random_range(10, 30) * 1s;
-    $fall-delay: math.random(30) * -1s;
+//   @for $i from 1 through $total {
+//     $random-x: math.random(1000000) * 0.0001vw;
+//     $random-offset: random_range(-100000, 100000) * 0.0001vw;
+//     $random-x-end: $random-x + $random-offset;
+//     $random-x-end-yoyo: $random-x + calc($random-offset / 2);
+//     $random-yoyo-time: calc(random_range(30000, 80000) / 100000);
+//     $random-yoyo-y: $random-yoyo-time * 100vh;
+//     $random-scale: math.random(10000) * 0.0001;
+//     $fall-duration: random_range(10, 30) * 1s;
+//     $fall-delay: math.random(30) * -1s;
 
-    &:nth-child(#{$i}) {
-      opacity: math.random(10000) * 0.0001;
-      transform: translate($random-x, -10px) scale($random-scale);
-      animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
-    }
+//     &:nth-child(#{$i}) {
+//       opacity: math.random(10000) * 0.0001;
+//       transform: translate($random-x, -10px) scale($random-scale);
+//       animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
+//     }
 
-    @keyframes fall-#{$i} {
-      #{math.percentage($random-yoyo-time)} {
-        transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
-      }
+//     @keyframes fall-#{$i} {
+//       #{math.percentage($random-yoyo-time)} {
+//         transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
+//       }
 
-      to {
-        transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
-      }
-    }
-  }
-}
+//       to {
+//         transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
+//       }
+//     }
+//   }
+// }
 </style>

@@ -3,7 +3,8 @@ export interface Employee {
   idr?: string
   name: string
   winner?: boolean
-  department?: string
+  proyecto?: string
+  localidad?: string
   isAvailable?: boolean
   isDelivered?: boolean
   gift?: Gift
@@ -12,6 +13,7 @@ export interface Employee {
 }
 
 export interface Gift {
+  id: number
   number_gift: number
   description: string
   isSelected: boolean

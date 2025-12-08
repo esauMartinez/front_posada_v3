@@ -14,17 +14,13 @@ defineProps<Props>()
   >
     <img src="../../public/frame.png" alt="frame" class="rounded-md frame-winner" />
     <div class="marco-contain">
-      <img
-        class="employee-image mb-4"
-        :src="`https://www.tsmconnect.com/empleados_tsmconnect/${winner.idr}.jpg`"
-        alt="employee"
-      />
+      <img class="employee-image mb-4" :src="`santa.jpg`" alt="employee" />
       <span class="text-white text-card text-[1.2rem] font-[400] w-[90%] mb-2">
         {{ winner.name }}
       </span>
 
-      <span class="text-white text-card font-[100] mb-2">{{ winner.department }}</span>
-      <span class="text-white text-card font-[400]">Regalo {{ winner.gift?.number_gift }}</span>
+      <span class="text-white text-card font-[100] mb-2">{{ winner.proyecto }}</span>
+      <!-- <span class="text-white text-card font-[400]">Regalo {{ winner.gift?.description }}</span> -->
     </div>
   </div>
 </template>

@@ -5,6 +5,7 @@ import WinnersView from '@/views/WinnersView.vue'
 import GiftDelivery from '@/views/GiftDelivery.vue'
 import EmployeesPage from '@/views/EmployeesPage.vue'
 import ActivatePage from '@/views/ActivatePage.vue'
+import ButtonSelectWinner from '@/views/ButtonSelectWinner.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +24,11 @@ const router = createRouter({
       path: '/ganadores',
       name: 'winners',
       component: WinnersView,
+    },
+    {
+      path: '/seleccionar-ganador',
+      name: 'winners',
+      component: ButtonSelectWinner,
     },
     {
       path: '/lista-ganadores',

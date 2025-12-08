@@ -9,16 +9,12 @@ defineProps<EmployeeProps>()
 </script>
 
 <template>
-  <div class="employee-card p-3" :id="`_${employee.idr}`">
+  <div class="employee-card p-3" :id="`_${employee.id}`">
     <img src="../../public/frame.png" alt="frame" class="rounded-md w-[95%]" />
     <div class="marco-contain">
-      <img
-        class="employee-image"
-        :src="`https://www.tsmconnect.com/empleados_tsmconnect/${employee.idr}.jpg`"
-        alt="employee"
-      />
+      <img class="employee-image" :src="`santa.jpg`" alt="employee" />
       <span class="text-white text-[2rem] font-[300] p-4 text-center">{{ employee.name }}</span>
-      <span class="text-white text-[1.5rem] font-[200] text-center">{{ employee.department }}</span>
+      <span class="text-white text-[1.5rem] font-[200] text-center">{{ employee.proyecto }}</span>
     </div>
   </div>
 </template>
