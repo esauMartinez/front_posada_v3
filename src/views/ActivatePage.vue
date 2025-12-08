@@ -3,43 +3,58 @@ import { ref } from 'vue'
 import { QrcodeStream } from 'qrcode-reader-vue3'
 import { useUpdate } from '@/composables/useUpdate'
 
-const result = ref('')
-const loading = ref(true)
-const cameraAllowed = ref(true)
-
-const { updateEmployeeFunctionId } = useUpdate()
-
-const onDecode = (decodedString) => {
-  updateEmployeeFunctionId(+result.value)
-  result.value = decodedString
-  // Opcional: vibrar el celular al escanear
-  if (navigator.vibrate) {
-    navigator.vibrate(200)
+interface DetectedCode {
+  boundingBox: {
+    x: number
+    y: number
+    width: number
+    height: number
   }
 }
 
-const onInit = async (promise) => {
+interface CameraError extends Error {
+  name: 'NotAllowedError' | 'NotFoundError' | 'NotReadableError' | string
+}
+
+const loading = ref(true)
+const cameraAllowed = ref(true)
+
+const { result, updateEmployeeFunctionId } = useUpdate()
+
+const onDecode = (decodedString: string): void => {
+  result.value = decodedString
+  updateEmployeeFunctionId(+decodedString)
+}
+
+const onInit = async (promise: Promise<void>): Promise<void> => {
   try {
     await promise
     loading.value = false
     cameraAllowed.value = true
-  } catch (error) {
+  } catch (error: unknown) {
     loading.value = false
-    if (error.name === 'NotAllowedError') {
-      cameraAllowed.value = false
-      alert('Por favor permite el acceso a la cámara')
-    } else if (error.name === 'NotFoundError') {
-      alert('No se encontró cámara en tu dispositivo')
-    } else if (error.name === 'NotReadableError') {
-      alert('La cámara está siendo usada por otra aplicación')
+
+    if (error instanceof Error) {
+      const cameraError = error as CameraError
+
+      if (cameraError.name === 'NotAllowedError') {
+        cameraAllowed.value = false
+        alert('Por favor permite el acceso a la cámara')
+      } else if (cameraError.name === 'NotFoundError') {
+        alert('No se encontró cámara en tu dispositivo')
+      } else if (cameraError.name === 'NotReadableError') {
+        alert('La cámara está siendo usada por otra aplicación')
+      } else {
+        alert('Error al acceder a la cámara: ' + error.message)
+      }
     } else {
-      alert('Error al acceder a la cámara: ' + error.message)
+      alert('Error desconocido al acceder a la cámara')
     }
   }
 }
 
 // Dibuja un cuadro alrededor del QR detectado
-const paintBoundingBox = (detectedCodes, ctx) => {
+const paintBoundingBox = (detectedCodes: DetectedCode[], ctx: CanvasRenderingContext2D): void => {
   for (const detectedCode of detectedCodes) {
     const { boundingBox } = detectedCode
     ctx.lineWidth = 2
@@ -59,11 +74,11 @@ const paintBoundingBox = (detectedCodes, ctx) => {
       <div v-if="loading" class="loading">📷 Iniciando cámara...</div>
     </qrcode-stream>
 
-    <div v-if="result" class="result">
+    <!-- <div v-if="result" class="result">
       <h3>✅ Código escaneado:</h3>
       <p>Empleado escaneado: {{ result }}</p>
       <button @click="result = ''">Escanear otro</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
