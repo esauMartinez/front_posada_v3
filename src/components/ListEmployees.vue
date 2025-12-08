@@ -8,7 +8,7 @@ import type { Employee } from '@/interfaces/employe'
 import { FilterMatchMode } from '@primevue/core/api'
 import { onMounted, ref } from 'vue'
 
-const { employees, getEmployeesFunction } = useEmployees()
+const { employees, getEmployeesFunction, sendEmailQrEmployee } = useEmployees()
 const { update } = useUpdate()
 const { enable } = useEnable()
 const { disable } = useDisable()
@@ -78,11 +78,16 @@ onMounted(() => {
     </V-Column>
     <V-Column header="Acciones" :style="{ width: '200px' }">
       <template #body="{ data }: { data: Employee }">
-        <div class="flex justify-center">
+        <div class="flex justify-center gap-3">
           <V-Button
             :icon="data.isAvailable ? 'pi pi-times' : 'pi pi-check'"
             :severity="data.isAvailable ? 'danger' : 'success'"
             @click="update(data)"
+          />
+          <V-Button
+            icon="pi pi-send"
+            @click="sendEmailQrEmployee(data.id!)"
+            v-if="!data.emailSended"
           />
         </div>
       </template>

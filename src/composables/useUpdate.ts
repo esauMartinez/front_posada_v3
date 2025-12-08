@@ -22,13 +22,6 @@ export const useUpdate = () => {
 
   const updateEmployeeFunctionId = async (payload: number) => {
     await updateEmployeeId(payload)
-    // Swal.fire({
-    //   position: 'top-end',
-    //   icon: 'success',
-    //   title: data,
-    //   showConfirmButton: false,
-    //   timer: 1500,
-    // })
     result.value = ''
   }
 
