@@ -5,6 +5,7 @@ import type { Employee } from '@/interfaces/employe'
 import { urlsocket } from '@/api'
 import type { Raffle } from '@/interfaces/raffle'
 import { useEmployees } from '@/composables/useEmployees'
+import Swal from 'sweetalert2'
 
 export const useSocketState = defineStore('socket', () => {
   console.log(urlsocket)
@@ -41,6 +42,13 @@ export const useSocketState = defineStore('socket', () => {
   })
 
   socket.on('employee enabled', () => {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Empleado confirmado',
+      showConfirmButton: false,
+      timer: 1500,
+    })
     getEmployeesFunction()
   })
 
