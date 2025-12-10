@@ -8,6 +8,15 @@ export const useUpdate = () => {
   const result = ref('')
   const { getEmployeesFunction } = useEmployees()
 
+  const scanning = ref(false)
+
+  const iniciarEscaneo = () => {
+    scanning.value = true
+
+    // Esta vibración inicial desbloquea vibración para la sesión
+    window.navigator?.vibrate?.(50)
+  }
+
   const updateEmployeeFunction = async (payload: Employee) => {
     const data = await updateEmployee(payload)
     Swal.fire({
@@ -22,7 +31,7 @@ export const useUpdate = () => {
 
   const updateEmployeeFunctionId = async (payload: number) => {
     await updateEmployeeId(payload)
-    result.value = ''
+    scanning.value = false
   }
 
   const update = (payload: Employee) => {
@@ -55,7 +64,9 @@ export const useUpdate = () => {
 
   return {
     result,
+    scanning,
     update,
+    iniciarEscaneo,
     updateEmployeeFunctionId,
   }
 }
