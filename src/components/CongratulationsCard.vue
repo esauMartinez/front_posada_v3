@@ -38,15 +38,15 @@ watch(congratulatios, async (payload) => {
     v-if="winners.length > 0"
   >
     <!-- v-if="congratulatios" -->
-    <img class="employee-image" :src="`santa.jpg`" alt="employee" />
-    <h1 class="text-[6rem] text-white text-center">¡¡Felicidades al ganador!!</h1>
-    <h2 class="text-[5rem] text-white text-center">
+    <img class="employee-image border-[#1e4a8a] border-2" :src="`santa.jpg`" alt="employee" />
+    <h1 class="text-[6rem] text-gray-200 text-center">¡¡Felicidades al ganador!!</h1>
+    <h2 class="text-[5rem] text-gray-200 text-center">
       {{ winners[winners.length - 1].name }}
     </h2>
-    <h2 class="text-[4rem] text-white text-center">
+    <h2 class="text-[4rem] text-gray-200 text-center">
       {{ winners[winners.length - 1].proyecto }}
     </h2>
-    <h3 class="text-[3rem] text-white text-center">
+    <h3 class="text-[3rem] text-gray-200 text-center">
       {{ winners[winners.length - 1].gift?.description }}
     </h3>
   </div>
@@ -59,7 +59,7 @@ watch(congratulatios, async (payload) => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at bottom, #142722 100%, #cacaca 100%) !important;
+  background: radial-gradient(ellipse at bottom, #1e4a8a 100%, #cacaca 100%) !important;
   overflow: hidden;
   filter: drop-shadow(0 0 3px white);
   display: flex;
@@ -93,6 +93,7 @@ watch(congratulatios, async (payload) => {
   height: 300px;
   margin-bottom: 20px;
   border-radius: 50%;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 992px) {
@@ -109,7 +110,6 @@ watch(congratulatios, async (payload) => {
     width: 250px;
     height: 250px;
     margin-bottom: 20px;
-    border-radius: 50%;
   }
 }
 </style>

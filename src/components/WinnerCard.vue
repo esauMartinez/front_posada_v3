@@ -2,72 +2,43 @@
 import type { Employee } from '@/interfaces/employe'
 
 interface Props {
-  winner: Employee
+  winners: Employee[]
 }
 
 defineProps<Props>()
 </script>
 
 <template>
-  <div
-    class="marco text-center flex flex-col items-center justify-center animate__animated animate__backInLeft"
-  >
-    <img src="../../public/frame.png" alt="frame" class="rounded-md frame-winner" />
-    <div class="marco-contain">
-      <img class="employee-image mb-4" :src="`santa.jpg`" alt="employee" />
-      <span class="text-white text-card text-[1.2rem] font-[400] w-[90%] mb-2">
-        {{ winner.name }}
-      </span>
-
-      <span class="text-white text-card font-[100] mb-2">{{ winner.proyecto }}</span>
-      <!-- <span class="text-white text-card font-[400]">Regalo {{ winner.gift?.description }}</span> -->
-    </div>
+  <div class="grid grid-cols-3 gap-3 pt-3 pb-3 pr-3">
+    <V-Card
+      v-for="winner in winners"
+      :key="winner.id"
+      class="card-winner card-employee min-h-[1000px!]"
+    >
+      <template #header>
+        <div class="flex justify-center">
+          <img src="../../public/gift.png" class="w-[300px]" :alt="winner.gift?.description" />
+        </div>
+      </template>
+      <template #title>
+        <div class="flex justify-center">
+          <span class="text-center">{{ winner.name }}</span>
+        </div>
+      </template>
+      <template #subtitle>
+        <div class="flex justify-center">{{ winner.proyecto }}</div>
+      </template>
+      <template #content>
+        <div class="flex justify-center">
+          <span class="text-center">{{ winner.gift?.description }}</span>
+        </div>
+      </template>
+    </V-Card>
   </div>
 </template>
 
 <style scoped>
-.marco {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-
-.marco-contain {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.employee-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-}
-
-.text-card {
-  font-family: 'Quicksand', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-}
-
-@media screen and (max-width: 992px) {
-  .marco {
-    height: 100vh;
-  }
-
-  .frame-winner {
-    height: 90%;
-    width: 100%;
-  }
-
-  .employee-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-  }
+.card-winner {
+  height: 100px!;
 }
 </style>
