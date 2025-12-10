@@ -26,9 +26,7 @@ const down = () => {
   <div class="h-svh winners">
     <CongratulationsCard />
     <ScreenRaffle />
-    <div v-for="(winner, index) in winners" :key="index">
-      <WinnerCard :winner="winner" />
-    </div>
+    <WinnerCard :winners="winners" />
     <ButtonEnd @click="down" />
   </div>
 </template>

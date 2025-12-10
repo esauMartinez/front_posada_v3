@@ -14,7 +14,8 @@ import { selectWinner } from '@/helpers/select-winner'
 const useRaffle = () => {
   const raffleStore = useRaffleStore()
 
-  const { employees, winners, counter, raffle, congratulatios } = storeToRefs(raffleStore)
+  const { employees, disableButtonSelectAwinner, winners, counter, raffle, congratulatios } =
+    storeToRefs(raffleStore)
   const winners_search = ref<Employee[]>([])
   const name = ref('')
 
@@ -129,6 +130,7 @@ const useRaffle = () => {
   }
 
   const selectWinnerFunction = () => {
+    window.navigator?.vibrate?.(50)
     selectWinner()
   }
 
@@ -140,6 +142,7 @@ const useRaffle = () => {
     winners_search,
     name,
     congratulatios,
+    disableButtonSelectAwinner,
     getEmployessFunction,
     getWinnersFunction,
     changeStatusRaffleFunction,
