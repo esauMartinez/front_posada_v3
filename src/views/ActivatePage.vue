@@ -19,9 +19,12 @@ interface CameraError extends Error {
 const loading = ref(true)
 const cameraAllowed = ref(true)
 
-const { result, updateEmployeeFunctionId } = useUpdate()
+const { result, scanning, iniciarEscaneo, updateEmployeeFunctionId } = useUpdate()
 
 const onDecode = (decodedString: string): void => {
+  if (window.navigator?.vibrate) {
+    window.navigator.vibrate(200)
+  }
   result.value = decodedString
   updateEmployeeFunctionId(+decodedString)
 }
@@ -66,19 +69,19 @@ const paintBoundingBox = (detectedCodes: DetectedCode[], ctx: CanvasRenderingCon
 
 <template>
   <div class="qr-scanner">
-    <h2>Escanear QR</h2>
-
     <div v-if="!cameraAllowed" class="warning">⚠️ Necesitas permitir el acceso a la cámara</div>
 
-    <qrcode-stream @decode="onDecode" @init="onInit" :track="paintBoundingBox" class="qr-video">
+    <qrcode-stream
+      @decode="onDecode"
+      @init="onInit"
+      :track="paintBoundingBox"
+      class="qr-video"
+      v-if="scanning"
+    >
       <div v-if="loading" class="loading">📷 Iniciando cámara...</div>
     </qrcode-stream>
 
-    <!-- <div v-if="result" class="result">
-      <h3>✅ Código escaneado:</h3>
-      <p>Empleado escaneado: {{ result }}</p>
-      <button @click="result = ''">Escanear otro</button>
-    </div> -->
+    <V-Button v-if="!scanning" @click="iniciarEscaneo" class="w-full" label="Escanear QR" />
   </div>
 </template>
 
