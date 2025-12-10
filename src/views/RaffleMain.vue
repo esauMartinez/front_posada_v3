@@ -116,7 +116,7 @@ items.forEach((item) => {
   position: absolute;
   width: 13px;
   height: 13px;
-  background: white;
+  background: rgb(230, 230, 230);
   border-radius: 50%;
   z-index: 1001;
 
