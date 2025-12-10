@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 import useRaffle from '@/composables/useRaffle'
 
 export const useSocketState = defineStore('socket', () => {
-  const { congratulatiosFunction } = useRaffle()
+  const { disableButtonSelectAwinner, congratulatiosFunction } = useRaffle()
   const socket = io(`${urlsocket}/raffle`, { transports: ['websocket'] })
 
   const raffleStore = useRaffleStore()
@@ -24,6 +24,7 @@ export const useSocketState = defineStore('socket', () => {
   socket.on('new winner', async (winner: Employee) => {
     console.log('a new winner selected')
     document.getElementById('scroll-content')?.classList.remove('scroll-content')
+    disableButtonSelectAwinner.value = false
     congratulatiosFunction(true)
     raffleStore.setWinner(winner)
   })
@@ -49,6 +50,7 @@ export const useSocketState = defineStore('socket', () => {
     document.getElementById('scroll-content')?.classList.add('scroll-content')
     document.getElementById('screen_raffle')?.classList.add('animate__fadeOutUp')
     document.getElementById('screen_raffle')?.classList.remove('animate__fadeInDown')
+    disableButtonSelectAwinner.value = true
     congratulatiosFunction(false)
   })
 

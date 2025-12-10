@@ -9,6 +9,7 @@ export const useRaffleStore = defineStore('rifa', () => {
   const counter = ref<number>(0)
   const raffle = ref<Raffle>({} as Raffle)
   const congratulatios = ref<boolean>(false)
+  const disableButtonSelectAwinner = ref<boolean>(false)
 
   return {
     employees,
@@ -16,6 +17,7 @@ export const useRaffleStore = defineStore('rifa', () => {
     counter,
     raffle,
     congratulatios,
+    disableButtonSelectAwinner,
 
     setEmployes(payload: Employee[]) {
       employees.value = payload
