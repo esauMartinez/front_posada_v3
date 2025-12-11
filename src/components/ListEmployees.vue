@@ -40,7 +40,7 @@ onMounted(() => {
         <V-IconField>
           <V-InputText fluid v-model="filters['global'].value" placeholder="Buscar" size="small" />
         </V-IconField>
-        <!-- <V-Button
+        <V-Button
           size="small"
           severity="danger"
           icon="pi pi-check"
@@ -53,7 +53,7 @@ onMounted(() => {
           icon="pi pi-power-off"
           label="Habilitar"
           @click="enable"
-        /> -->
+        />
       </div>
     </template>
     <V-Column header="ID" field="id" sortable></V-Column>
@@ -92,7 +92,6 @@ onMounted(() => {
         </div>
       </template>
     </V-Column>
-    -->
 
     <template #footer> Ganadores: {{ employees.length }} </template>
   </V-DataTable>
