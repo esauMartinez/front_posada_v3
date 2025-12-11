@@ -2,7 +2,6 @@ import { io } from 'socket.io-client'
 import { useRaffleStore } from './raffle'
 import { defineStore } from 'pinia'
 import type { Employee } from '@/interfaces/employe'
-import { urlsocket } from '@/api'
 import type { Raffle } from '@/interfaces/raffle'
 import { useEmployees } from '@/composables/useEmployees'
 import Swal from 'sweetalert2'
@@ -11,7 +10,12 @@ import { nextTick, ref } from 'vue'
 
 export const useSocketState = defineStore('socket', () => {
   const { congratulatiosFunction } = useRaffle()
-  const socket = io(`${urlsocket}/raffle`, { transports: ['websocket'] })
+  // const socket = io(`${urlsocket}/raffle`, { transports: ['websocket'] })
+
+  const socket = io('https://recawi.com.mx/raffle', {
+    path: `/${import.meta.env.VITE_WS_SOCKET}/socket.io/`,
+  })
+
   const startButton = ref<boolean>(false)
   const selectButton = ref<boolean>(true)
   const winner = ref<Employee>({} as Employee)
