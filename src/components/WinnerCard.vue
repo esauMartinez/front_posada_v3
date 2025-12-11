@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { url } from '@/api'
 import type { Employee } from '@/interfaces/employe'
 
 interface Props {
@@ -17,7 +18,11 @@ defineProps<Props>()
     >
       <template #header>
         <div class="flex justify-center">
-          <img src="../../public/gift.png" class="w-[300px]" :alt="winner.gift?.description" />
+          <img
+            :src="`${url}/imagenes/${winner.gift?.id}.png`"
+            class="w-[300px]"
+            :alt="winner.gift?.description"
+          />
         </div>
       </template>
       <template #title>
