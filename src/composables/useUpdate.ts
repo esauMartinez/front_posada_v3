@@ -1,10 +1,21 @@
-import { updateEmployee } from '@/helpers/update-empleado'
+import { updateEmployee, updateEmployeeId } from '@/helpers/update-empleado'
 import type { Employee } from '@/interfaces/employe'
 import Swal from 'sweetalert2'
 import { useEmployees } from './useEmployees'
+import { ref } from 'vue'
 
 export const useUpdate = () => {
+  const result = ref('')
   const { getEmployeesFunction } = useEmployees()
+
+  const scanning = ref(false)
+
+  const iniciarEscaneo = () => {
+    scanning.value = true
+
+    // Esta vibración inicial desbloquea vibración para la sesión
+    window.navigator?.vibrate?.(300)
+  }
 
   const updateEmployeeFunction = async (payload: Employee) => {
     const data = await updateEmployee(payload)
@@ -16,6 +27,11 @@ export const useUpdate = () => {
       timer: 1500,
     })
     getEmployeesFunction()
+  }
+
+  const updateEmployeeFunctionId = async (payload: number) => {
+    await updateEmployeeId(payload)
+    scanning.value = false
   }
 
   const update = (payload: Employee) => {
@@ -47,6 +63,10 @@ export const useUpdate = () => {
   }
 
   return {
+    result,
+    scanning,
     update,
+    iniciarEscaneo,
+    updateEmployeeFunctionId,
   }
 }

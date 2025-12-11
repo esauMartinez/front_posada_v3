@@ -9,6 +9,7 @@ import { deliverGift } from '@/helpers/deliver-gift'
 import { useRaffleStore } from '@/stores/raffle'
 import type { Employee } from '@/interfaces/employe'
 import { ref } from 'vue'
+import { selectWinner } from '@/helpers/select-winner'
 
 const useRaffle = () => {
   const raffleStore = useRaffleStore()
@@ -127,6 +128,11 @@ const useRaffle = () => {
     raffleStore.setCongratulations(payload)
   }
 
+  const selectWinnerFunction = () => {
+    window.navigator?.vibrate?.(50)
+    selectWinner()
+  }
+
   return {
     employees,
     winners,
@@ -143,6 +149,7 @@ const useRaffle = () => {
     deliverGiftFunction,
     setWinnerSearch,
     congratulatiosFunction,
+    selectWinnerFunction,
   }
 }
 

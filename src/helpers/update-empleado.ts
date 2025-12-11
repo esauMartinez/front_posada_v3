@@ -8,6 +8,12 @@ export const updateEmployee = async (payload: Employee): Promise<ResponseData> =
   return data
 }
 
+export const updateEmployeeId = async (payload: number): Promise<ResponseData> => {
+  const { data } = await raffleApiConnection.get<ResponseData>(`/activate-employee/${payload}`)
+
+  return data
+}
+
 export const enableEmployees = async (): Promise<ResponseData> => {
   const { data } = await raffleApiConnection.put<ResponseData>(`/enable-employees`, {
     status: true,

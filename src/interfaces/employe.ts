@@ -3,13 +3,17 @@ export interface Employee {
   idr?: string
   name: string
   winner?: boolean
-  department?: string
+  proyecto?: string
+  localidad?: string
   isAvailable?: boolean
   isDelivered?: boolean
   gift?: Gift
+  qrCode?: string
+  emailSended?: boolean
 }
 
 export interface Gift {
+  id: number
   number_gift: number
   description: string
   isSelected: boolean

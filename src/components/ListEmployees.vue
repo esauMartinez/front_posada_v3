@@ -8,7 +8,7 @@ import type { Employee } from '@/interfaces/employe'
 import { FilterMatchMode } from '@primevue/core/api'
 import { onMounted, ref } from 'vue'
 
-const { employees, getEmployeesFunction } = useEmployees()
+const { employees, getEmployeesFunction, sendEmailQrEmployee } = useEmployees()
 const { update } = useUpdate()
 const { enable } = useEnable()
 const { disable } = useDisable()
@@ -56,23 +56,11 @@ onMounted(() => {
         /> -->
       </div>
     </template>
-    <V-Column header="Idr" field="idr" sortable></V-Column>
-    <V-Column header="Fotografía" :style="{ width: '100px' }">
-      <template #body="{ data }: { data: Employee }">
-        <div class="flex justify-center">
-          <img
-            :src="`https://www.tsmconnect.com/empleados_tsmconnect/${data.idr}.jpg`"
-            width="50px"
-            height="50px"
-            alt="employee"
-            class="h-[50px]! rounded-full"
-          />
-        </div>
-      </template>
-    </V-Column>
+    <V-Column header="ID" field="id" sortable></V-Column>
     <V-Column header="Empleado" field="name" sortable></V-Column>
-    <V-Column field="department" header="Departamento" :style="{ width: '200px' }" sortable />
-    <!-- <V-Column field="isAvailable" header="Estatus" :style="{ width: '200px' }" sortable>
+    <V-Column field="proyecto" header="Proyecto" :style="{ width: '200px' }" sortable />
+    <V-Column field="localidad" header="Localidad" :style="{ width: '200px' }" sortable />
+    <V-Column field="isAvailable" header="Estatus" :style="{ width: '200px' }" sortable>
       <template #body="{ data }: { data: Employee }">
         <V-Tag
           :value="data.isAvailable ? 'Habilitado' : 'No habilitado'"
@@ -81,17 +69,30 @@ onMounted(() => {
         />
       </template>
     </V-Column>
+    <V-Column header="Qr" :style="{ width: '50px' }">
+      <template #body="{ data }: { data: Employee }">
+        <div class="flex justify-center items-center">
+          <iframe :src="data.qrCode" frameborder="0"></iframe>
+        </div>
+      </template>
+    </V-Column>
     <V-Column header="Acciones" :style="{ width: '200px' }">
       <template #body="{ data }: { data: Employee }">
-        <div class="flex justify-center">
+        <div class="flex justify-center gap-3">
           <V-Button
             :icon="data.isAvailable ? 'pi pi-times' : 'pi pi-check'"
             :severity="data.isAvailable ? 'danger' : 'success'"
             @click="update(data)"
           />
+          <V-Button
+            icon="pi pi-send"
+            @click="sendEmailQrEmployee(data.id!)"
+            v-if="!data.emailSended"
+          />
         </div>
       </template>
-    </V-Column> -->
+    </V-Column>
+    -->
 
     <template #footer> Ganadores: {{ employees.length }} </template>
   </V-DataTable>

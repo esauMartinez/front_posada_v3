@@ -1,6 +1,6 @@
 import axios from 'axios'
+const apiUrl = import.meta.env.VITE_API_URL
 
-export const url = 'https://api-posada-v3-c2908b9e58f3.herokuapp.com'
-// export const url = 'http://localhost:4000'
+export const url = apiUrl
 
 export const raffleApiConnection = axios.create({ baseURL: url })

@@ -1,0 +1,14 @@
+version: '1.0'
+services:
+  sistema-posada:
+    build: .
+    restart: always
+    # container_name: front_sistema_mantenimiento_v2
+    ports:
+      - '3500:3500'
+    networks:
+      - posada
+
+networks:
+  posada:
+    name: posada

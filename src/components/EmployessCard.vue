@@ -9,41 +9,31 @@ defineProps<EmployeeProps>()
 </script>
 
 <template>
-  <div class="employee-card p-3" :id="`_${employee.idr}`">
-    <img src="../../public/frame.png" alt="frame" class="rounded-md w-[95%]" />
-    <div class="marco-contain">
-      <img
-        class="employee-image"
-        :src="`https://www.tsmconnect.com/empleados_tsmconnect/${employee.idr}.jpg`"
-        alt="employee"
-      />
-      <span class="text-white text-[2rem] font-[300] p-4 text-center">{{ employee.name }}</span>
-      <span class="text-white text-[1.5rem] font-[200] text-center">{{ employee.department }}</span>
-    </div>
-  </div>
+  <V-Card
+    :style="{ height: '100%' }"
+    class="flex justify-center card-employee"
+    :id="`_${employee.id}`"
+  >
+    <template #header>
+      <div class="flex justify-center">
+        <img
+          alt="user header"
+          :src="`santa.jpg`"
+          class="w-[200px] rounded-full border-[#1e4a8a] border-2"
+        />
+      </div>
+    </template>
+    <template #title>
+      <div class="flex justify-center">
+        <span class="text-center" :style="{ 'font-size': '3rem' }">{{ employee.name }}</span>
+      </div>
+    </template>
+    <template #subtitle>
+      <div class="flex justify-center" :style="{ 'font-size': '2rem' }">
+        {{ employee.proyecto }}
+      </div>
+    </template>
+  </V-Card>
 </template>
 
-<style scoped>
-.employee-card {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  height: 100vh;
-}
-
-.marco-contain {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 90%;
-}
-
-.employee-image {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-}
-</style>
+<style scoped></style>

@@ -14,6 +14,10 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
+    allowedHosts: ['e696d3864077.ngrok-free.app'],
+  },
+  build: {
+    outDir: 'dist',
   },
   css: {
     preprocessorOptions: {
