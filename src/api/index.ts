@@ -1,6 +1,8 @@
 import axios from 'axios'
+const apiUrl = import.meta.env.VITE_API_URL
+const apiUrlSocket = import.meta.env.VITE_API_URL_SOCKET
 
-export const url = 'https://recawi.com.mx'
-export const urlsocket = 'wss://recawi.com.mx'
+export const url = apiUrl
+export const urlsocket = apiUrlSocket
 
-export const raffleApiConnection = axios.create({ baseURL: `${url}/api-posada-cdmx` })
+export const raffleApiConnection = axios.create({ baseURL: url })
