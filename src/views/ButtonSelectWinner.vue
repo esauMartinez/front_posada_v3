@@ -3,7 +3,7 @@ import { useSocketState } from '@/stores/socket'
 import { storeToRefs } from 'pinia'
 
 const socketStore = useSocketState()
-const { disableButtonSelectAwinner } = storeToRefs(socketStore)
+const { startButton, selectButton } = storeToRefs(socketStore)
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const { disableButtonSelectAwinner } = storeToRefs(socketStore)
       class="p-4 text-white h-[100px] w-[100px]"
       rounded
       @click="socketStore.iniciarScroll"
-      :disabled="disableButtonSelectAwinner"
+      :disabled="startButton"
       severity="success"
     >
       <i class="pi pi-play"></i>
@@ -21,7 +21,7 @@ const { disableButtonSelectAwinner } = storeToRefs(socketStore)
       class="p-4 text-white h-[100px] w-[100px]"
       rounded
       @click="socketStore.pararScroll"
-      :disabled="!disableButtonSelectAwinner"
+      :disabled="selectButton"
       severity="danger"
     >
       <i class="pi pi-pause"></i>
