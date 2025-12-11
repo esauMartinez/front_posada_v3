@@ -14,7 +14,7 @@ export const useUpdate = () => {
     scanning.value = true
 
     // Esta vibración inicial desbloquea vibración para la sesión
-    window.navigator?.vibrate?.(50)
+    window.navigator?.vibrate?.(300)
   }
 
   const updateEmployeeFunction = async (payload: Employee) => {

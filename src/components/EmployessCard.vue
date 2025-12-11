@@ -9,7 +9,11 @@ defineProps<EmployeeProps>()
 </script>
 
 <template>
-  <V-Card :style="{ height: '100%' }" class="flex justify-center card-employee">
+  <V-Card
+    :style="{ height: '100%' }"
+    class="flex justify-center card-employee"
+    :id="`_${employee.id}`"
+  >
     <template #header>
       <div class="flex justify-center">
         <img
