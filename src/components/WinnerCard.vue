@@ -17,11 +17,11 @@ defineProps<Props>()
       class="card-winner card-employee min-h-[1000px!]"
     >
       <template #header>
-        <div class="flex justify-center">
+        <div class="flex justify-center p-5 pt-10 pb-10" :style="{ height: '300px' }">
           <img
             :src="`${url}/imagenes/${winner.gift?.id}.png`"
-            class="w-[300px]"
             :alt="winner.gift?.description"
+            class=""
           />
         </div>
       </template>

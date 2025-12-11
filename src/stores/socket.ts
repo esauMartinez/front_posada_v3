@@ -31,7 +31,7 @@ export const useSocketState = defineStore('socket', () => {
 
   const scrollContent = ref<HTMLElement | null>(null)
   let animationFrame: number | null = null
-  const SPEED = 30 // <<--- ajusta aquí
+  const SPEED = 200 // <<--- ajusta aquí
 
   const animate = () => {
     if (!scrollContent.value) return
