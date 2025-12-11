@@ -26,7 +26,9 @@ defineProps<Props>()
         </div>
       </template>
       <template #subtitle>
-        <div class="flex justify-center">{{ winner.proyecto }}</div>
+        <div class="flex justify-center">
+          <span class="text-center">{{ winner.proyecto }}</span>
+        </div>
       </template>
       <template #content>
         <div class="flex justify-center">

@@ -16,7 +16,7 @@ const router = createRouter({
       component: RaffleMain,
     },
     {
-      path: '/botones-acciones',
+      path: '/resetear',
       name: 'board',
       component: BoardButtons,
     },

@@ -1,19 +1,30 @@
 <script setup lang="ts">
-import useRaffle from '@/composables/useRaffle'
+import { useSocketState } from '@/stores/socket'
+import { storeToRefs } from 'pinia'
 
-const { disableButtonSelectAwinner, selectWinnerFunction } = useRaffle()
+const socketStore = useSocketState()
+const { disableButtonSelectAwinner } = storeToRefs(socketStore)
 </script>
 
 <template>
-  <div class="h-svh flex items-center justify-center">
+  <div class="h-svh flex flex-col gap-3 items-center justify-center">
     <V-Button
       class="p-4 text-white h-[100px] w-[100px]"
       rounded
-      @click="selectWinnerFunction"
+      @click="socketStore.iniciarScroll"
       :disabled="disableButtonSelectAwinner"
       severity="success"
     >
       <i class="pi pi-play"></i>
+    </V-Button>
+    <V-Button
+      class="p-4 text-white h-[100px] w-[100px]"
+      rounded
+      @click="socketStore.pararScroll"
+      :disabled="!disableButtonSelectAwinner"
+      severity="danger"
+    >
+      <i class="pi pi-pause"></i>
     </V-Button>
   </div>
 </template>

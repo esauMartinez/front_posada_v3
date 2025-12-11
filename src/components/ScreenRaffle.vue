@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import useRaffle from '@/composables/useRaffle'
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 
 const { raffle, getRaffleFunction } = useRaffle()
 
 getRaffleFunction()
+
+const mensajeFinalizacion = computed(() => {
+  if (raffle.value.status === 'FINISHED') {
+    return true
+  }
+  return false
+})
 
 watch(raffle, (payload) => {
   if (payload.status === 'PLAYING') {
@@ -20,22 +27,10 @@ watch(raffle, (payload) => {
   }
 })
 
-// const toogleClass = () => {
-//   document.getElementsByClassName('logo_tsm')[0].classList.add('animate__bounce')
-//   setTimeout(() => {
-//     document.getElementsByClassName('logo_tsm')[0].classList.remove('animate__bounce')
-//   }, 3000)
-// }
-
 const closeScreenRaffle = () => {
   document.getElementById('screen_raffle')?.classList.add('animate__fadeOutUp')
   document.getElementById('screen_raffle')?.classList.remove('animate__fadeInDown')
-  // showBtnClose.value = false
 }
-
-// setInterval(() => {
-//   toogleClass()
-// }, 10000)
 </script>
 
 <template>
@@ -65,7 +60,11 @@ const closeScreenRaffle = () => {
     </div>
 
     <!-- Tagline -->
-    <p class="text-gray-600 text-3xl italic">Soluciones Para un Mundo Inalámbrico</p>
+
+    <p class="text-gray-600 text-3xl italic mt-5" v-if="mensajeFinalizacion">
+      Rifa finalizada. ¡Felicidades a todos los ganadores!
+    </p>
+    <p class="text-gray-600 text-3xl italic" v-else>Soluciones Para un Mundo Inalámbrico</p>
 
     <!-- Wave at Bottom -->
     <div class="absolute bottom-0 left-0 w-full">
