@@ -12,7 +12,8 @@ import { nextTick, ref } from 'vue'
 export const useSocketState = defineStore('socket', () => {
   const { congratulatiosFunction } = useRaffle()
   const socket = io(`${urlsocket}/raffle`, { transports: ['websocket'] })
-  const disableButtonSelectAwinner = ref<boolean>(false)
+  const startButton = ref<boolean>(false)
+  const selectButton = ref<boolean>(true)
   const winner = ref<Employee>({} as Employee)
 
   const raffleStore = useRaffleStore()
@@ -79,15 +80,19 @@ export const useSocketState = defineStore('socket', () => {
       if (progress < 1) {
         requestAnimationFrame(smoothScroll)
       } else {
-        // Llega al ganador → ejecutar
-        disableButtonSelectAwinner.value = false
-        congratulatiosFunction(true)
         raffleStore.setWinner(winner.value)
+        congratulatiosFunction(true)
+        socket.emit('reset buttons')
       }
     }
 
     requestAnimationFrame(smoothScroll)
   }
+
+  socket.on('reset buttons', () => {
+    startButton.value = false
+    selectButton.value = true
+  })
 
   socket.on('new winner', async (payload: Employee) => {
     console.log('a new winner selected')
@@ -127,12 +132,14 @@ export const useSocketState = defineStore('socket', () => {
   })
 
   const iniciarScroll = () => {
-    disableButtonSelectAwinner.value = true
+    startButton.value = true
+    selectButton.value = false
     window.navigator?.vibrate?.(500)
     socket.emit('start scroll')
   }
 
   const pararScroll = () => {
+    selectButton.value = true
     window.navigator?.vibrate?.(500)
     socket.emit('stop scroll')
   }
@@ -148,7 +155,8 @@ export const useSocketState = defineStore('socket', () => {
 
   return {
     connect,
-    disableButtonSelectAwinner,
+    startButton,
+    selectButton,
 
     iniciarScroll,
     pararScroll,
