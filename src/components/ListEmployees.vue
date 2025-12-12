@@ -60,6 +60,8 @@ onMounted(() => {
     <V-Column header="Empleado" field="name" sortable></V-Column>
     <V-Column field="proyecto" header="Proyecto" :style="{ width: '200px' }" sortable />
     <V-Column field="localidad" header="Localidad" :style="{ width: '200px' }" sortable />
+    <V-Column field="correo_pesonal" header="Email personal" :style="{ width: '200px' }" sortable />
+    <V-Column field="correo_empresa" header="Email empresa" :style="{ width: '200px' }" sortable />
     <V-Column field="isAvailable" header="Estatus" :style="{ width: '200px' }" sortable>
       <template #body="{ data }: { data: Employee }">
         <V-Tag
